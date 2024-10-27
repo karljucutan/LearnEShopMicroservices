@@ -1,4 +1,6 @@
-﻿namespace Catalog.API.Products.CreateProduct
+﻿using Microsoft.AspNetCore.Http.HttpResults;
+
+namespace Catalog.API.Products.CreateProduct
 {
     public record CreateProductRequest(
     string Name,
