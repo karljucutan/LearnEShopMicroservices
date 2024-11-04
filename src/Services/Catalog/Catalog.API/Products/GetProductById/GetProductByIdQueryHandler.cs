@@ -5,7 +5,7 @@
 
     public class GetProductByIdQueryHandler(
         IDocumentSession session,
-        ILogger logger)
+        ILogger<GetProductByIdQueryHandler> logger)
         : IQueryHandler<GetProductByIdQuery, GetProductByIdResult>
     {
         public async Task<GetProductByIdResult> Handle(GetProductByIdQuery query, CancellationToken cancellationToken)
