@@ -16,7 +16,7 @@
                     return Results.Ok(response);
                 })
                 .WithName("GetProductById")
-                .Produces<GetProductByIdResponse>(StatusCodes.Status201Created)
+                .Produces<GetProductByIdResponse>(StatusCodes.Status200OK)
                 .ProducesProblem(StatusCodes.Status400BadRequest)
                 .WithSummary("Get Prouct By Id")
                 .WithDescription("Get Product By Id");
