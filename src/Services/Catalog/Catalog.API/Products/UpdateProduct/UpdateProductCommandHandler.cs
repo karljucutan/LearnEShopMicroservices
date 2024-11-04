@@ -10,7 +10,7 @@ namespace Catalog.API.Products.UpdateProduct
         decimal Price) 
         : ICommand<UpdateProductResult>;
 
-    public record UpdateProductResult(Product Product);
+    public record UpdateProductResult(bool IsSuccess);
 
     internal class UpdateProductCommandHandler(
         IDocumentSession session,
@@ -34,7 +34,7 @@ namespace Catalog.API.Products.UpdateProduct
             session.Update(product);
             await session.SaveChangesAsync(cancellationToken);
 
-            return new UpdateProductResult(product);
+            return new UpdateProductResult(true);
         }
     }
 }
