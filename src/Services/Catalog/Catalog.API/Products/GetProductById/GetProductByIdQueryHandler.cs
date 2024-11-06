@@ -14,7 +14,7 @@
 
             var product = await session.LoadAsync<Product>(query.Id, cancellationToken);
 
-            ProductNotFoundException.ThrowIfNull(product);
+            ProductNotFoundException.ThrowIfNull(product, query.Id);
 
             return new GetProductByIdResult(product);
         }

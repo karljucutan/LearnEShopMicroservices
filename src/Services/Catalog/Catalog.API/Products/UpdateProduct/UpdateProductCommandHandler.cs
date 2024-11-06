@@ -34,7 +34,7 @@
 
             var product = await session.LoadAsync<Product>(command.Id, cancellationToken);
 
-            ProductNotFoundException.ThrowIfNull(product);
+            ProductNotFoundException.ThrowIfNull(product, command.Id);
 
             product.Name = command.Name;
             product.Category = command.Category;
