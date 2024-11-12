@@ -4,3 +4,5 @@ global using Carter;
 global using MediatR;
 global using Mapster;
 global using FluentValidation;
+global using Basket.API.Basket.GetBasket;
+global using BuildingBlocks.Behaviors;
