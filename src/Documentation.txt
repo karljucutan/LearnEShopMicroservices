@@ -1,0 +1,18 @@
+﻿This currently implements Modular Monolith: all services are in 1 solution and compose all services at the same time. 
+
+Based on my current understanding tt can be structured like this so that each service have it's own solution and repo.
+
+
+RootFolder/
+├── Solution1/
+│   ├── ProjectA/
+│   ├── ProjectB/
+│   └── docker-compose.yml  # For services in Solution1
+├── Solution2/
+│   ├── ProjectC/
+│   ├── ProjectD/
+│   └── docker-compose.yml  # For services in Solution2
+├── Solution3/
+│   └── ProjectE/
+│       └── docker-compose.yml  # For service in Solution3
+└── master-docker-compose.yml  # Includes and extends all others
