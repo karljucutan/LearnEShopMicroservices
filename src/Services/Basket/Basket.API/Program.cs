@@ -26,6 +26,22 @@ builder.Services.AddMarten(options =>
 }).UseLightweightSessions();
 
 builder.Services.AddScoped<IBasketRepository, BasketRepository>();
+// Adding a service without scrutor (Assembly scanning and decoration extensions for Microsoft.Extensions.DependencyInjection)
+//builder.Services.AddScoped<IBasketRepository>(provider =>
+//{
+//    var basketRepository = provider.GetRequiredService<BasketRepository>();
+//    var distributedCache = provider.GetRequiredService<IDistributedCache>();
+//    return new CachedBasketRepository(basketRepository, distributedCache);
+//});
+// Adding with scrutor
+builder.Services.Decorate<IBasketRepository, CachedBasketRepository>();
+
+builder.Services.AddStackExchangeRedisCache(options =>
+{
+    options.Configuration = builder.Configuration.GetConnectionString("Redis");
+    options.InstanceName = "Basket";
+});
+
 builder.Services.AddExceptionHandler<CustomExceptionHandler>();
 
 var app = builder.Build();
