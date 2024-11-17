@@ -49,11 +49,21 @@ builder.Services.AddStackExchangeRedisCache(options =>
     options.InstanceName = "Basket";
 });
 
-// Grpc services
+// Grpc Services
 builder.Services.AddGrpcClient<DiscountProtoService.DiscountProtoServiceClient>(options =>
 {
     options.Address = new Uri(builder.Configuration["GrpcSettings:DiscountUrl"]!);
+}).ConfigurePrimaryHttpMessageHandler(() =>
+{
+    var handler = new HttpClientHandler
+    {
+        ServerCertificateCustomValidationCallback =
+        HttpClientHandler.DangerousAcceptAnyServerCertificateValidator
+    };
+
+    return handler;
 });
+// For Development Environment only and not for production use
 
 builder.Services.AddExceptionHandler<CustomExceptionHandler>();
 
