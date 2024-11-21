@@ -1,5 +1,4 @@
 ﻿using Catalog.API.Products.CreateProduct;
-using Microsoft.AspNetCore.Mvc;
 
 namespace Catalog.API.Products.GetProducts
 {

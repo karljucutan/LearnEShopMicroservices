@@ -1,6 +1,4 @@
-﻿using System.Runtime.InteropServices.Marshalling;
-
-namespace BuildingBlocks.Exceptions
+﻿namespace BuildingBlocks.Exceptions
 {
     public class InternalServerException : Exception
     {
