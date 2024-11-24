@@ -2,9 +2,9 @@
 
 namespace BuildingBlocks.CQRS
 {
-    public interface ICommandHandler<in TQuery>
-        : IRequestHandler<TQuery>
-        where TQuery : ICommand
+    public interface ICommandHandler<in TCommand>
+        : IRequestHandler<TCommand>
+        where TCommand : ICommand
     {
     }
 

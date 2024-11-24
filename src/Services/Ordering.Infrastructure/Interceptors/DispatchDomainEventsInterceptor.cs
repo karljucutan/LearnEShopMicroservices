@@ -5,6 +5,11 @@ using Ordering.Domain.Abstractions;
 
 namespace Ordering.Infrastructure.Interceptors
 {
+    /// <summary>
+    /// Publish Domain Events before EF savechanges
+    /// SavingChanges - This is executed before changes are saved
+    /// SavedChangesAsync - This is executed after changes are saved
+    /// </summary>
     public class DispatchDomainEventsInterceptor(IMediator mediator)
         : SaveChangesInterceptor
     {

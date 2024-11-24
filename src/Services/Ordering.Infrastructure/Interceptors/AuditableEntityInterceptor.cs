@@ -5,8 +5,18 @@ using Ordering.Domain.Abstractions;
 
 namespace Ordering.Infrastructure.Interceptors
 {
+    /// <summary>
+    /// Updates auditable fields before EF savechanges
+    /// SavingChanges - This is executed before changes are saved
+    /// SavedChangesAsync - This is executed after changes are saved
+    /// </summary>
     public class AuditableEntityInterceptor : SaveChangesInterceptor
     {
+        //public override ValueTask<int> SavedChangesAsync(SaveChangesCompletedEventData eventData, int result, CancellationToken cancellationToken = default)
+        //{
+        //    return base.SavedChangesAsync(eventData, result, cancellationToken);
+        //}
+
         public override InterceptionResult<int> SavingChanges(DbContextEventData eventData, InterceptionResult<int> result)
         {
             UpdateEntities(eventData.Context);
