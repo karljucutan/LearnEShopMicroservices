@@ -1,4 +1,5 @@
 using BuildingBlocks.Exceptions.Handler;
+using BuildingBlocks.Messaging.MassTransit;
 using Discount.Grpc;
 using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
@@ -55,6 +56,7 @@ builder.Services.AddGrpcClient<DiscountProtoService.DiscountProtoServiceClient>(
     options.Address = new Uri(builder.Configuration["GrpcSettings:DiscountUrl"]!);
 }).ConfigurePrimaryHttpMessageHandler(() =>
 {
+    // For Development Environment only and not for production use
     var handler = new HttpClientHandler
     {
         ServerCertificateCustomValidationCallback =
@@ -63,7 +65,9 @@ builder.Services.AddGrpcClient<DiscountProtoService.DiscountProtoServiceClient>(
 
     return handler;
 });
-// For Development Environment only and not for production use
+
+// Async Communication Services
+builder.Services.AddMessageBroker(builder.Configuration);
 
 builder.Services.AddExceptionHandler<CustomExceptionHandler>();
 
