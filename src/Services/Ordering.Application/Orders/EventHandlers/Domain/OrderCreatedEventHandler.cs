@@ -18,6 +18,8 @@ namespace Ordering.Application.Orders.EventHandlers.Domain
             {
                 var orderCreatedIntegrationEvent = domainEvent.Order.ToOrderDto();
                 await publishEndpoint.Publish(orderCreatedIntegrationEvent, cancellationToken);
+                // Note: No more subscribers for this integration event
+                // Example subscribers for this one are Shipment, Payment, Notification modules
             }
         }
     }
